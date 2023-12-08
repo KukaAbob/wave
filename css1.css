@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Выдвигающая панель стилей */
+.chat-panel {
+    position: fixed;
+    left: -300px;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #f0f0f0;
+    border-right: 1px solid #ccc;
+    transition: left 0.3s ease;
+}
+
+.chat-content {
+    padding: 10px;
+}
+
+/* Стили для товаров и кнопок */
+.store-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.product {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.buy-buttons {
+    text-align: center;
+}
+
+/* Стили для чата */
+.chat-messages {
+    height: 200px;
+    overflow-y: auto;
+    border-bottom: 1px solid black;
+}
+
+#messageInput {
+    width: 80%;
+    margin-top: 10px;
+}
+
+/* Стили для кнопки отправки сообщения */
+button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}

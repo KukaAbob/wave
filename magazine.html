@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css1.css">
+    <script defer src="chat.js"></script>
+    <title>Ваш магазин</title>
+</head>
+<body>
+
+    <!-- Выдвигающая панель с чатом -->
+    <div class="chat-panel" id="chatPanel">
+        <!-- Здесь может быть ваш чат с продавцом -->
+        <div class="chat-content">
+            <div class="chat-messages" id="chatMessages">
+                <!-- Здесь будут сообщения чата -->
+            </div>
+            <input type="text" id="messageInput" placeholder="Введите сообщение...">
+            <button onclick="sendMessage()">Отправить</button>
+        </div>
+    </div>
+
+    <!-- Содержимое магазина -->
+    <div class="store-container">
+        <!-- Дивы для товаров -->
+        <div class="product" onclick="buyProduct(1)">Товар 1</div>
+        <div class="product" onclick="buyProduct(2)">Товар 2</div>
+        <div class="product" onclick="buyProduct(3)">Товар 3</div>
+
+        <!-- Кнопки для покупки товара -->
+        <div class="buy-buttons">
+            <button onclick="showCheckout()">Оформить заказ</button>
+        </div>
+    </div>
+
+</body>
+</html>
