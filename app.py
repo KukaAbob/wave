@@ -36,48 +36,103 @@
 # if __name__ == '__main__':
 #     app.run(debug=True , port=8080)
 
-from flask import Flask, render_template, request, jsonify
+# from flask import Flask, render_template, request, jsonify
+# from pymongo import MongoClient
+# from werkzeug.security import generate_password_hash, check_password_hash
+# from pymongo.mongo_client import MongoClient
+# from pymongo.server_api import ServerApi
+# from flask import Flask, render_template
+# from flask import Flask, render_template, request, jsonify
+# from pymongo import MongoClient
+
+# app = Flask(__name__)
+# # FLASK
+# uri = "mongodb+srv://boab:1234@cluster0.d3aixga.mongodb.net/?retryWrites=true&w=majority"
+# # Create a new client and connect to the server
+# client = MongoClient(uri, server_api=ServerApi('1'))
+
+
+# db = client.user_database
+# coll = db.user
+
+
+# @app.route('/')
+# def index():
+#     return render_template('registration.html')
+
+# @app.route('/register', methods=['POST'])
+# def register():
+#     data = request.get_json()
+#     username = data['username']
+
+#     # Проверка уникальности имени пользователя
+#     if coll.find_one({'username': username}):
+#         return jsonify({'error': 'Имя пользователя уже занято!'})
+
+
+#     # Хэширование пароля
+#     hashed_password = generate_password_hash(data['password'], method='sha256')
+#     data['password'] = hashed_password
+
+#     # Сохранение данных в MongoDB
+#     coll.insert_one(data)
+
+#     return jsonify({'message': 'Регистрация успешна!'})
+
+# @app.route('/login', methods=['POST'])
+# def login():
+#     data = request.get_json()
+#     username = data['username']
+#     password = data['password']
+
+#     user = coll.find_one({'username': username})
+
+#     if user and check_password_hash(user['password'], password):
+#         return jsonify({'message': 'Авторизация успешна!'})
+#     else:
+#         return jsonify({'error': 'Неверное имя пользователя или пароль!'})
+
+# if __name__ == '__main__':
+#     app.run(debug=True , port = 8080)
+
+from flask import Flask, render_template, request, jsonify ,  redirect, url_for
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
-from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-from flask import Flask, render_template
-from flask import Flask, render_template, request, jsonify
-from pymongo import MongoClient
+import json
 
 app = Flask(__name__)
 # FLASK
 uri = "mongodb+srv://boab:1234@cluster0.d3aixga.mongodb.net/?retryWrites=true&w=majority"
 # Create a new client and connect to the server
-client = MongoClient(uri, server_api=ServerApi('1'))
+client = MongoClient(uri)
 
 
 db = client.user_database
 coll = db.user
 
-
 @app.route('/')
 def index():
+    
     return render_template('registration.html')
 
 @app.route('/register', methods=['POST'])
 def register():
+    
     data = request.get_json()
+    # data2 = json.loads(data)
+    # print(data2)
     username = data['username']
-
-    # Проверка уникальности имени пользователя
+    
+    
     if coll.find_one({'username': username}):
         return jsonify({'error': 'Имя пользователя уже занято!'})
-
-
-    # Хэширование пароля
-    hashed_password = generate_password_hash(data['password'], method='sha256')
-    data['password'] = hashed_password
-
-    # Сохранение данных в MongoDB
-    coll.insert_one(data)
-
-    return jsonify({'message': 'Регистрация успешна!'})
+    else:
+        print("Abob")
+        coll.insert_one(data)
+        
+    return redirect(url_for(''))
+    
 
 @app.route('/login', methods=['POST'])
 def login():
